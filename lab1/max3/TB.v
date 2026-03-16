@@ -8,4 +8,11 @@ max3b_pipe     dut_b_pipe ( .clk(clk), .d1(data1), .d2(data2), .d3(data3), .wy(w
 
 generator stim( .clk(clk), .d1(data1), .d2(data2), .d3(data3));
 
+// VCD dump setup
+initial begin
+    $dumpfile("build/max3_wave.vcd");
+    $dumpvars(0, TB);
+    #20000 $finish;
+end
+
 endmodule

@@ -1,9 +1,9 @@
-module max5 (clk, d1, d2, d3, d4, d5, wy);
+module max5p (clk, d1, d2, d3, d4, d5, wy);
 input  clk;
 input  [3:0] d1, d2, d3, d4, d5;
 output [3:0] wy;
 
-reg [3:0] wy, r1, r2, r3, r4, r5, max12, max34, max1234, max;
+reg [3:0] wy,  r1, r2, r3, r4, r5, r5del, max12, max34, max1234, max;
 
 always @(posedge clk)
 begin
@@ -12,6 +12,11 @@ begin
     r3 <= d3;
     r4 <= d4;
     r5 <= d5;
+end
+
+always @(posedge clk)
+begin
+	r5del <= r5;
 end
 
 ///////////////
@@ -35,13 +40,13 @@ always @(max12, max34)
         max1234 <= max34;
 
 ///////////////
-always @(max1234, r5)
-    if (max1234 > r5) 
+always @(max1234, r5del)
+    if ( max1234 > r5del) 
         max <= max1234;
     else
-        max <= r5;
+        max <= r5del;
 
-always @(posedge clk) wy = max;
+always @(posedge clk) wy <= max;
 
 endmodule
 

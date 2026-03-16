@@ -1,4 +1,4 @@
-module max3_pipe  (clk, d1, d2, d3, wy);
+module max3b_pipe  (clk, d1, d2, d3, wy);
 input   [3:0] d1, d2, d3;
 input clk;
 output  [3:0] wy;

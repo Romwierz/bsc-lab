@@ -2,3 +2,5 @@
 build/
 *.pdf
 **/.simvision/
+.env/
+*.png
